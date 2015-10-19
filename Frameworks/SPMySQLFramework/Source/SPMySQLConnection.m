@@ -539,6 +539,11 @@ asm(".desc ___crashreporter_info__, 0x10");
 	// Set the connection encoding
 	mysql_options(theConnection, MYSQL_SET_CHARSET_NAME, [encodingName UTF8String]);
 
+    // Set the cleartext option
+    BOOL enableClearText = YES;
+    mysql_options(theConnection, MYSQL_ENABLE_CLEARTEXT_PLUGIN, &enableClearText);
+
+    
 	// Set up the connection variables in the format MySQL needs, from the class-wide variables
 	const char *theHost = NULL;
 	const char *theUsername = "";
