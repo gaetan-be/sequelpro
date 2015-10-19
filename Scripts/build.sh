@@ -190,17 +190,17 @@ then
 		echo 'No localizations to copy.'
 	fi
 
-	echo 'Performing distribution build code signing...'
+# 	echo 'Performing distribution build code signing...'
 
-	VERIFY_ERRORS=$(dist_code_sign "$FRAMEWORKS_LIST" "$FILES_TO_SIGN_LIST")
+# 	VERIFY_ERRORS=$(dist_code_sign "$FRAMEWORKS_LIST" "$FILES_TO_SIGN_LIST")
 	
-	if [ "$VERIFY_ERRORS" != '' ]
-	then
-		echo "error: Signing verification threw an error: $VERIFY_ERRORS"
-		echo "error: All distribution builds must be signed with the key used for all previous distribution signing!"
+# 	if [ "$VERIFY_ERRORS" != '' ]
+# 	then
+# 		echo "error: Signing verification threw an error: $VERIFY_ERRORS"
+# 		echo "error: All distribution builds must be signed with the key used for all previous distribution signing!"
 		
-		exit 1
-	fi
+# 		exit 1
+# 	fi
 	
 	echo 'Running package-application.sh to package application for distribution...'
 
@@ -208,16 +208,17 @@ then
 fi
 
 # Development build code signing
-if [ "$CONFIGURATION" == 'Debug' ]
-then
-	echo 'Performing development build code signing...'
 
-	dev_code_sign "$FRAMEWORKS_LIST"
-	dev_code_sign "$FILES_TO_SIGN_LIST"
+# if [ "$CONFIGURATION" == 'Debug' ]
+# then
+# 	echo 'Performing development build code signing...'
+
+# 	dev_code_sign "$FRAMEWORKS_LIST"
+# 	dev_code_sign "$FILES_TO_SIGN_LIST"
 
 	# Run a fake command to silence errors
-	touch "$BUILD_PRODUCT"
-fi
+# 	touch "$BUILD_PRODUCT"
+# fi
 
 rm "$FRAMEWORKS_LIST"
 rm "$FILES_TO_SIGN_LIST"
